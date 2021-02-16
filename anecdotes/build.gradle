@@ -37,6 +37,7 @@ dependencies {
     implementation 'org.webjars:jquery:3.3.1-2'
     implementation 'org.webjars:bootstrap:4.3.1'
     implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
+    implementation 'org.jetbrains:annotations:19.0.0'
     compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     runtimeOnly 'mysql:mysql-connector-java'
