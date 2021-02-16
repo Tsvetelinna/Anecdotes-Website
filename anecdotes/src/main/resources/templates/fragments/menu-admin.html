@@ -11,24 +11,22 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item" th:class="${path == 'anecdotes'}? 'nav-item active' : 'nav-item'">
-                    <a class="nav-link" href="/anecdotes">Home</a>
+                    <a class="nav-link" th:href="@{/anecdotes}">Home</a>
                 </li>
-                <li class="nav-item dropdown">
+
+                <li class="nav-item dropdown" th:class="${path == 'categories'}? 'nav-item active' : 'nav-item'">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Anecdotes
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="/categories">Categories</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="/login">Add Anecdote</a>
                     </div>
+                <li class="nav-item" th:class="${path == 'users'}? 'nav-item active' : 'nav-item'">
+                    <a class="nav-link" th:href="@{/users}">Users</a>
                 </li>
             </ul>
+            <a class="btn btn-primary" th:href="@{/logout}" style="margin-right: 10px">Log Out</a>
         </div>
-
-        <a class="btn btn-primary" th:href="@{/login}" style="margin-right: 10px">Log In</a>
-        <a class="btn btn-primary" th:href="@{/register}">Register</a>
-
     </nav>
 </div>

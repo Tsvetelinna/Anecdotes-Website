@@ -47,4 +47,9 @@ public class AnecdoteServiceImpl implements AnecdoteService {
         anecdoteRepository.deleteById(id);
         return deleted;
     }
+
+    @Override
+    public long getAnecdotesCount() {
+        return anecdoteRepository.count();
+    }
 }

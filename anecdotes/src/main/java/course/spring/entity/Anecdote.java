@@ -3,10 +3,7 @@ package course.spring.entity;
 import lombok.*;
 import org.jetbrains.annotations.NotNull;
 
-import javax.persistence.Entity;
-import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "anecdotes")
@@ -21,9 +18,9 @@ public class Anecdote extends BaseEntity {
     @Lob
     private byte[] picture;
     @NotNull
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private User author;
     @NotNull
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Category category;
 }

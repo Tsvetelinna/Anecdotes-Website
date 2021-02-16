@@ -1,15 +1,18 @@
 package course.spring.web;
 
+import course.spring.entity.User;
 import course.spring.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+
+import static course.spring.entity.Role.*;
 
 @Controller
-@RequestMapping("/users")
+@RequestMapping("")
 public class AuthenticationController {
 
     private UserService userService;
@@ -26,11 +29,27 @@ public class AuthenticationController {
         return "projects";
     }
 
-    @GetMapping("/home")
-    public String getHome(@RequestParam("name") String name, Model model) {
-        System.out.println(name);
-        model.addAttribute("name", name);
-        model.addAttribute("path", "home");
-        return "home";
+    @GetMapping("/register")
+    public String register(User user) {
+        return "register";
     }
+
+    @PostMapping("/sign-up")
+    public String signUp(User user) {
+        user.setRole(USER);
+        User created = userService.addUser(user);
+//        model.addAttribute("user", created);
+        return "redirect:/login";
+    }
+
+    @GetMapping("/home")
+    public String getHome() {
+        return "home-user";
+    }
+
+    @GetMapping("/admin/home")
+    public String getHomeAdmin() {
+        return "home-admin";
+    }
+
 }

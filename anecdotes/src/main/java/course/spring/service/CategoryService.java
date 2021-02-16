@@ -15,4 +15,7 @@ public interface CategoryService {
     Category updateCategory(Category category);
 
     Category deleteCategory(Long id);
+
+    long getCategoriesCount();
+
 }

@@ -15,4 +15,7 @@ public interface AnecdoteService {
     Anecdote updateAnecdote(Anecdote anecdote);
 
     Anecdote deleteAnecdote(Long id);
+
+    long getAnecdotesCount();
+
 }

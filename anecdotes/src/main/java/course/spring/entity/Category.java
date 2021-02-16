@@ -3,6 +3,7 @@ package course.spring.entity;
 import lombok.*;
 import org.jetbrains.annotations.NotNull;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -14,7 +15,6 @@ import java.util.Objects;
 @Table(name = "categories")
 @Data
 @NoArgsConstructor
-@RequiredArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 public class Category extends BaseEntity {
@@ -24,6 +24,10 @@ public class Category extends BaseEntity {
 
     @OneToMany(mappedBy = "category")
     private List<Anecdote> anecdotes = new ArrayList<>();
+
+    public Category(@NotNull String name) {
+        this.name = name;
+    }
 
     @Override
     public boolean equals(Object o) {

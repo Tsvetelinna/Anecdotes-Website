@@ -45,7 +45,6 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public User addUser(User user) {
         user.setId(null);
-        user.setRole(USER);
         PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
         user.setPassword(encoder.encode(user.getPassword()));
         return userRepository.save(user);

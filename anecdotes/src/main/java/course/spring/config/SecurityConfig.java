@@ -1,15 +1,14 @@
-package course.spring.myblogsapp.config;
+package course.spring.config;
 
-import course.spring.myblogsapp.service.UserService;
+import course.spring.service.UserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
-import static org.springframework.http.HttpMethod.GET;
-import static org.springframework.http.HttpMethod.POST;
+import static org.springframework.http.HttpMethod.*;
 
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -18,15 +17,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
             .authorizeRequests()
-            .antMatchers(POST,"/login", "/register", "/home/**").permitAll()
+            .antMatchers(POST,"/login", "/register").permitAll()
             .antMatchers("/").permitAll()
-        .and()
-        .formLogin();
+                .and().formLogin()
+                .successHandler(myAuthenticationSuccessHandler());
+
     }
 
     @Bean
     public UserDetailsService userDetailsService(UserService userService) {
         return userService::getUserByUsername;
+    }
+
+    @Bean
+    public AuthenticationSuccessHandler myAuthenticationSuccessHandler(){
+        return new MySimpleUrlAuthenticationSuccessHandler();
     }
 
 }
