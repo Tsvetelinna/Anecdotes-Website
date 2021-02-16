@@ -1,9 +1,6 @@
 package course.spring.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 import org.jetbrains.annotations.NotNull;
 
 import javax.persistence.Entity;
@@ -11,6 +8,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "categories")
@@ -18,6 +16,7 @@ import java.util.List;
 @NoArgsConstructor
 @RequiredArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(callSuper = true)
 public class Category extends BaseEntity {
 
     @NotNull
@@ -25,4 +24,19 @@ public class Category extends BaseEntity {
 
     @OneToMany(mappedBy = "category")
     private List<Anecdote> anecdotes = new ArrayList<>();
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Category category = (Category) o;
+        return name.equals(category.name) &&
+                Objects.equals(anecdotes, category.anecdotes);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), name, anecdotes);
+    }
 }

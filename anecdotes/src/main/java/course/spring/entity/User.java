@@ -1,10 +1,7 @@
 package course.spring.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -19,6 +16,7 @@ import java.util.*;
 @NoArgsConstructor
 @RequiredArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(callSuper = true)
 public class User extends BaseEntity implements UserDetails {
 
     @NotNull
@@ -88,5 +86,29 @@ public class User extends BaseEntity implements UserDetails {
     @Override
     public boolean isEnabled() {
         return active;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        User user = (User) o;
+        return active == user.active &&
+                name.equals(user.name) &&
+                username.equals(user.username) &&
+                password.equals(user.password) &&
+                role == user.role &&
+                Arrays.equals(profilePicture, user.profilePicture) &&
+                Objects.equals(createdAt, user.createdAt) &&
+                Objects.equals(updatedAt, user.updatedAt) &&
+                Objects.equals(anecdotes, user.anecdotes);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = Objects.hash(super.hashCode(), name, username, password, role, active, createdAt, updatedAt, anecdotes);
+        result = 31 * result + Arrays.hashCode(profilePicture);
+        return result;
     }
 }
