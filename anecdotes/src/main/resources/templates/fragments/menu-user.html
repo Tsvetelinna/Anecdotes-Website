@@ -36,15 +36,6 @@
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
-            <form class="language-form form-inline my-2 my-lg-0">
-                <div class="form-group language-selector">
-                    <label for="locales" class="menu-label col-form-label">Language</label>
-                    <select id="locales" class="form-control">
-                        <option value="en-US" th:selected="${#locale.toLanguageTag() == 'en-US'}">EN</option>
-                        <option value="bg-BG" th:selected="${#locale.toLanguageTag() == 'bg-BG'}">BG</option>
-                    </select>
-                </div>
-            </form>
         </div>
     </nav>
 </div>
