@@ -56,7 +56,7 @@ public class CategoryController {
     }
 
     @PostMapping("/categories/add")
-    public String signUp(Category category) {
+    public String createCategory(Category category) {
         categoryService.addCategory(category);
         return "redirect:/categories-admin";
     }

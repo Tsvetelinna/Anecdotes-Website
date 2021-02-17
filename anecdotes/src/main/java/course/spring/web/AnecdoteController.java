@@ -1,6 +1,8 @@
 package course.spring.web;
 
 import course.spring.dao.CategoryRepository;
+import course.spring.entity.Anecdote;
+import course.spring.entity.AnecdoteInfo;
 import course.spring.entity.Category;
 import course.spring.service.AnecdoteService;
 import course.spring.service.CategoryService;
@@ -56,6 +58,21 @@ public class AnecdoteController {
         model.addAttribute("path", "categories");
         return "users-anecdotes-by-category";
     }
+
+    @GetMapping("/add-anecdote")
+    public String addAnecdote(AnecdoteInfo anecdote, Model model) {
+        model.addAttribute("anecdote", anecdote);
+        model.addAttribute("categories", categoryService.getAllCategories());
+        model.addAttribute("path", "categories");
+        return "add-anecdote";
+    }
+
+    @PostMapping("/anecdotes/add")
+    public String createAnecdote(AnecdoteInfo anecdote) {
+        anecdoteService.addAnecdote(anecdote);
+        return "redirect:/anecdotes-user";
+    }
+
 
     private void setModel(Model model) {
         model.addAttribute("anecdotes", anecdoteService.getAllAnecdotes());

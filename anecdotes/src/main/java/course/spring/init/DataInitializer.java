@@ -48,7 +48,7 @@ public class DataInitializer implements CommandLineRunner {
         }
 
         if (anecdoteService.getAnecdotesCount() == 0) {
-            anecdotes.forEach(anecdoteService::addAnecdote);
+            anecdotes.forEach(anecdote -> anecdoteService.addAnecdote(anecdote));
             anecdotes.forEach(a -> a.getCategory().getAnecdotes().add(a));
             anecdotes.forEach(a -> a.getAuthor().getAnecdotes().add(a));
         }

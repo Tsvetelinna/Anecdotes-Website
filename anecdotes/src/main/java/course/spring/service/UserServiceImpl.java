@@ -65,7 +65,8 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public User updateUser(User user) {
-        getUserById(user.getId());
+        User userById = getUserById(user.getId());
+        user.setPassword(userById.getPassword());
         user.setUpdatedAt(Date.from(Instant.now()));
         return userRepository.save(user);
     }
