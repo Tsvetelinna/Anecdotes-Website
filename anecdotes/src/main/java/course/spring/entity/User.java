@@ -38,7 +38,7 @@ public class User extends BaseEntity implements UserDetails {
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt = new Date();
 
-    @OneToMany(mappedBy = "author")
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
     private List<Anecdote> anecdotes = new ArrayList<>();
 
     @Override

@@ -10,4 +10,7 @@ import java.util.List;
 public interface AnecdoteRepository extends JpaRepository<Anecdote, Long> {
 
     List<Anecdote> findByCategoryId(Long categoryId);
+
+    List<Anecdote> findByAuthorId(Long authorId);
+
 }

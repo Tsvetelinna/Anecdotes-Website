@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/head::head('My Profile')"></head>
 <body>
-<div th:replace="fragments/menu-user::menu(${path})"></div>
+<div th:replace="fragments/menu-admin::menu(${path})"></div>
 <div class="container">
     <form class="form-signin" method="post" action="#"  th:action="@{/profile-admin/update/{id}(id=${user.id})}"
               th:object="${user}" xmlns:th="http://www.w3.org/1999/xhtml">

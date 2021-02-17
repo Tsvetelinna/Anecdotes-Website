@@ -39,6 +39,12 @@ public class AnecdoteServiceImpl implements AnecdoteService {
     }
 
     @Override
+    public List<Anecdote> getAllAnecdotesByAuthor() {
+        Long userId = getAuthenticatedUser().getId();
+        return anecdoteRepository.findByAuthorId(userId);
+    }
+
+    @Override
     public Anecdote getAnecdoteById(Long id) {
         return anecdoteRepository.findById(id).orElseThrow(() ->
                 new NonExisitingEntityException(String.format("Anecdote with ID='%d' does not exists", id)));
@@ -72,8 +78,38 @@ public class AnecdoteServiceImpl implements AnecdoteService {
     }
 
     @Override
+    public Anecdote updateAnecdote(Long id, AnecdoteInfo info) {
+        final Anecdote anecdote = getAnecdoteById(id);
+        anecdote.setText(info.getDescription());
+        anecdote.setPicture(info.getPicture());
+        final Category oldCategory = anecdote.getCategory();
+        Category newCategory = new Category();
+        boolean hasNewCategory = false;
+
+        if (!oldCategory.getId().equals(info.getCategoryId())) {
+            newCategory = categoryService.getCategoryById(info.getCategoryId());
+            anecdote.setCategory(newCategory);
+            hasNewCategory = true;
+        }
+
+        Anecdote save = anecdoteRepository.save(anecdote);
+        if (hasNewCategory) {
+            oldCategory.getAnecdotes().remove(save);
+            newCategory.getAnecdotes().add(save);
+        }
+        return save;
+    }
+
+    @Override
     public Anecdote deleteAnecdote(Long id) {
         Anecdote deleted = getAnecdoteById(id);
+        final Category category = categoryService.getCategoryById(deleted.getCategory().getId());
+        category.getAnecdotes().remove(deleted);
+        categoryService.updateCategory(category);
+
+        final User user = userService.getUserById(deleted.getAuthor().getId());
+        user.getAnecdotes().remove(deleted);
+        userService.updateUser(user);
         anecdoteRepository.deleteById(id);
         return deleted;
     }

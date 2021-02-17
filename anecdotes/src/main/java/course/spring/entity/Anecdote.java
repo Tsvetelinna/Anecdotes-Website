@@ -18,9 +18,9 @@ public class Anecdote extends BaseEntity {
     @Lob
     private byte[] picture;
     @NotNull
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     private User author;
     @NotNull
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Category category;
 }

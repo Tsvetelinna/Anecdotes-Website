@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head::head('Manage Anecdote')"></head>
+<body>
+<div th:replace="fragments/menu-admin::menu(${path})"></div>
+<div class="container">
+    <form class="form-signin" method="post" action="#" th:action="@{/admins/anecdotes/update/{id}(id=${anecdote.id})}"
+          th:object="${anecdote}">
+        <input type="hidden" th:field="*{id}"/>
+        <h2 class="form-signin-heading">Manage Anecdote</h2>
+        <textarea placeholder="Type anecdote here..." name="text" id="text" th:field="*{description}" class="form-control" rows="5"></textarea>
+        <div style="margin-bottom: 15px">
+            <select class="form-control" id="testOrder" th:field="*{categoryId}" name="testOrder" required="">
+                <option value="">Select Category</option>
+                <option th:each="c : ${categories}"
+                        th:value="${c.id}"
+                        th:text="${c.name}"></option>
+            </select>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Add</button>
+    </form>
+
+    <form class="form-signin" xmlns:th="http://www.w3.org/1999/xhtml">
+        <input type="hidden" th:field="*{id}" th:object="${anecdote}"/>
+        <a class="btn btn-danger" th:href="@{admins/anecdotes/delete(id=${anecdote.id})}" >Delete</a>
+    </form>
+</div>
+<div th:replace="fragments/foot::foot"></div>
+</body>
+</html>

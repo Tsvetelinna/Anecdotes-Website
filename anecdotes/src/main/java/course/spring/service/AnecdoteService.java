@@ -11,6 +11,8 @@ public interface AnecdoteService {
 
     List<Anecdote> getAllAnecdotesByCategory(Long categoryId);
 
+    List<Anecdote> getAllAnecdotesByAuthor();
+
     Anecdote getAnecdoteById(Long id);
 
     Anecdote addAnecdote(Anecdote anecdote);
@@ -18,6 +20,8 @@ public interface AnecdoteService {
     Anecdote addAnecdote(AnecdoteInfo anecdote);
 
     Anecdote updateAnecdote(Anecdote anecdote);
+
+    Anecdote updateAnecdote(Long id, AnecdoteInfo anecdote);
 
     Anecdote deleteAnecdote(Long id);
 

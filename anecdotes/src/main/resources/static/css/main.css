@@ -8,10 +8,6 @@ h3 {
     padding-left: 30px;
 }
 
-.img-thumbnail {
-    width:80px;
-}
-
 /* Main menu */
 .navbar{
     padding: 0.1rem 1rem;
@@ -33,3 +29,13 @@ h3 {
 .navbar .active {
     background: gainsboro;
 }
+
+.anecdote_container {
+    margin: 5px;
+}
+
+.anecdote_container:hover {
+    background-color: #fff9b8;
+    border-color: gold;
+}
+

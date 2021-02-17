@@ -3,10 +3,7 @@ package course.spring.entity;
 import lombok.*;
 import org.jetbrains.annotations.NotNull;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -22,7 +19,7 @@ public class Category extends BaseEntity {
     @NotNull
     private String name;
 
-    @OneToMany(mappedBy = "category")
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
     private List<Anecdote> anecdotes = new ArrayList<>();
 
     public Category(@NotNull String name) {
