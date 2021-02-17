@@ -2,19 +2,19 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/head::head('Categories')"></head>
 <body>
-<div th:replace="fragments/menu-user::menu(${path})"></div>
+<div th:replace="fragments/menu::menu(${path})"></div>
 <div class="container">
     <div class="jumbotron text-center">
-        <h2>Categories</h2>
+        <h2>Anecdotes</h2>
     </div>
-
     <div class="container">
         <div class="row justify-content-center " >
-            <a th:href="@{users/anecdotes/by-category(id=${c.id})}" class="col-md-3 img-thumbnail anecdote_container" th:each="c : ${categories}">
-                <p th:text="${c.name}"></p>
+            <a  class="col-md-3 img-thumbnail anecdote_container" th:each="a : ${anecdotes}">
+                <p th:text="${a.text}"></p>
                 <img src="https://www.thetraveler.bg/wp-content/uploads/2020/06/Sunset-Thessaloniki-7.jpg" class="img-thumbnail" alt="Sunset">
             </a>
         </div>
+
     </div>
 </div>
 <div th:replace="fragments/foot::foot"></div>

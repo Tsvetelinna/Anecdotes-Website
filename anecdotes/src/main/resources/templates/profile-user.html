@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/head::head('Users')">
-<style type="text/css">
+<head th:replace="fragments/head::head('My Profile')">
+    <style type="text/css">
 
 .anecdote_container {
     margin: 5px;
@@ -15,21 +15,21 @@
 </style>
 </head>
 <body>
-<div th:replace="fragments/menu-admin::menu(${path})"></div>
+<div th:replace="fragments/menu-user::menu(${path})"></div>
 <div class="container">
     <div class="jumbotron text-center">
-        <h2>Users</h2>
+        <h2>My Profile</h2>
     </div>
 
     <div class="container">
         <div class="row justify-content-center " >
-            <a th:href="@{update-user(id=${u.id})}" class="col-md-3 img-thumbnail anecdote_container" th:each="u : ${users}">
-                <p> Name: [[${u.name}]]</p>
-                <p> Username: [[${u.username}]]</p>
-                <p> Role: [[${u.role}]]</p>
-                <p> Profile Picture: [[${u.profilePicture}]]</p>
-                <p> Created: [[${u.createdAt}]]</p>
-                <p> Updated: [[${u.updatedAt}]]</p>
+            <a th:href="@{update-user-profile(id=${user.id})}" class="col-md-3 img-thumbnail anecdote_container" >
+                <p> Name: [[${user.name}]]</p>
+                <p> Username: [[${user.username}]]</p>
+                <p> Role: [[${user.role}]]</p>
+                <p> Profile Picture: [[${user.profilePicture}]]</p>
+                <p> Created: [[${user.createdAt}]]</p>
+                <p> Updated: [[${user.updatedAt}]]</p>
                 <img src="https://www.thetraveler.bg/wp-content/uploads/2020/06/Sunset-Thessaloniki-7.jpg" class="img-thumbnail" alt="Sunset">
             </a>
         </div>

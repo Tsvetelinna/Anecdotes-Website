@@ -24,6 +24,11 @@ public class AnecdoteServiceImpl implements AnecdoteService {
     }
 
     @Override
+    public List<Anecdote> getAllAnecdotesByCategory(Long categoryId) {
+        return anecdoteRepository.findByCategoryId(categoryId);
+    }
+
+    @Override
     public Anecdote getAnecdoteById(Long id) {
         return anecdoteRepository.findById(id).orElseThrow(() ->
                 new NonExisitingEntityException(String.format("Anecdote with ID='%d' does not exists", id)));

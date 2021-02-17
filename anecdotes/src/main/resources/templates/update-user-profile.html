@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head::head('My Profile')"></head>
+<body>
+<div th:replace="fragments/menu-user::menu(${path})"></div>
+<div class="container">
+    <form class="form-signin" method="post" action="#"  th:action="@{/profile/update/{id}(id=${user.id})}"
+              th:object="${user}" xmlns:th="http://www.w3.org/1999/xhtml">
+        <input type="hidden" th:field="*{id}"/>
+        <h2 class="form-signin-heading">Update</h2>
+        <p>
+        <label for="username" class="sr-only">Name</label>
+        <input type="text" id="name" name="name" th:field="*{name}" class="form-control" placeholder="Name" required="" autofocus="">
+    </p>
+        <p>
+            <label for="username" class="sr-only">Username</label>
+            <input type="text" id="username" name="username" th:field="*{username}" class="form-control" placeholder="Username" required="" autofocus="">
+        </p>
+        <button class="btn btn-primary" type="submit">Add</button>
+    </form>
+
+</div>
+<div th:replace="fragments/foot::foot"></div>
+</body>
+</html>

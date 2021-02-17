@@ -6,6 +6,7 @@ import course.spring.entity.User;
 import course.spring.exception.InvalidEntityDataException;
 import course.spring.exception.NonExisitingEntityException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -42,6 +43,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User getUserProfile() {
+        return getAuthenticatedUser();
+    }
+
+    @Override
     public User getUserByUsername(String username) {
         return userRepository.findByUsername(username).orElseThrow(() ->
                 new InvalidEntityDataException("Ivalid username or password."));
@@ -75,5 +81,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public long getUsersCount() {
         return userRepository.count();
+    }
+
+    private User getAuthenticatedUser() {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        return getUserByUsername(username);
     }
 }

@@ -8,6 +8,8 @@ public interface AnecdoteService {
 
     List<Anecdote> getAllAnecdotes();
 
+    List<Anecdote> getAllAnecdotesByCategory(Long categoryId);
+
     Anecdote getAnecdoteById(Long id);
 
     Anecdote addAnecdote(Anecdote anecdote);

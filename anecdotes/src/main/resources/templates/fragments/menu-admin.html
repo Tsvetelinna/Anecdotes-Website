@@ -29,6 +29,9 @@
                 <li class="nav-item" th:class="${path == 'users'}? 'nav-item active' : 'nav-item'">
                     <a class="nav-link" th:href="@{/users}">Users</a>
                 </li>
+                <li class="nav-item" th:class="${path == 'my-profile'}? 'nav-item active' : 'nav-item'">
+                    <a class="nav-link" th:href="@{/profile-admin}">My Profile</a>
+                </li>
             </ul>
             <a class="btn btn-primary" th:href="@{/logout}" style="margin-right: 10px">Log Out</a>
         </div>
