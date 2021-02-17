@@ -11,12 +11,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 
+import java.time.Instant;
+import java.util.Date;
 import java.util.List;
 
-import static course.spring.entity.Role.USER;
-
 @Service
-@Transactional(readOnly = true)
+@Transactional
 @Validated
 public class UserServiceImpl implements UserService {
 
@@ -54,6 +54,7 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public User updateUser(User user) {
         getUserById(user.getId());
+        user.setUpdatedAt(Date.from(Instant.now()));
         return userRepository.save(user);
     }
 

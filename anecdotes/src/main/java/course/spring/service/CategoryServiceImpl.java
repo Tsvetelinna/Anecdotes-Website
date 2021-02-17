@@ -11,7 +11,7 @@ import org.springframework.validation.annotation.Validated;
 import java.util.List;
 
 @Service
-@Transactional(readOnly = true)
+@Transactional
 @Validated
 public class CategoryServiceImpl implements CategoryService {
 

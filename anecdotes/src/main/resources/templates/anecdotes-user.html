@@ -2,17 +2,17 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/head::head('Anecdotes')"></head>
 <body>
-<div th:replace="fragments/menu::menu(${path})"></div>
+<div th:replace="fragments/menu-user::menu(${path})"></div>
 <div class="container">
     <div class="jumbotron text-center">
         <h2>Anecdotes</h2>
     </div>
     <div class="container">
-        <div class="row justify-content-center " th:each="a : ${anecdotes}">
-            <div class="col-md-3 img-thumbnail" style="margin: 5px">
+        <div class="row justify-content-center " >
+            <a  class="col-md-3 img-thumbnail anecdote_container" th:each="a : ${anecdotes}">
                 <p th:text="${a.text}"></p>
                 <img src="https://www.thetraveler.bg/wp-content/uploads/2020/06/Sunset-Thessaloniki-7.jpg" class="img-thumbnail" alt="Sunset">
-            </div>
+            </a>
         </div>
     </div>
 </div>

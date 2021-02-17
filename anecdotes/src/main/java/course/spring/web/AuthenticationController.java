@@ -23,12 +23,6 @@ public class AuthenticationController {
     }
 
 
-    @GetMapping
-    public String getPosts(Model model) {
-        model.addAttribute("path", "projects");
-        return "projects";
-    }
-
     @GetMapping("/register")
     public String register(User user) {
         return "register";
@@ -37,8 +31,7 @@ public class AuthenticationController {
     @PostMapping("/sign-up")
     public String signUp(User user) {
         user.setRole(USER);
-        User created = userService.addUser(user);
-//        model.addAttribute("user", created);
+        userService.addUser(user);
         return "redirect:/login";
     }
 

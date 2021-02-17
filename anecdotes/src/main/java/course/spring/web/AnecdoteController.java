@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/anecdotes")
+@RequestMapping
 public class AnecdoteController {
 
     private AnecdoteService anecdoteService;
@@ -19,9 +19,26 @@ public class AnecdoteController {
         this.anecdoteService = anecdoteService;
     }
 
-    @GetMapping
+    @GetMapping("/anecdotes")
     public String getAnecdotes(Model model) {
-        model.addAttribute("path", "anecdotes");
+        setModel(model);
         return "anecdotes";
+    }
+
+    @GetMapping("/anecdotes-admin")
+    public String getAnecdotesAdmin(Model model) {
+        setModel(model);
+        return "anecdotes-admin";
+    }
+
+    @GetMapping("/anecdotes-user")
+    public String getAnecdotesUser(Model model) {
+        setModel(model);
+        return "anecdotes-user";
+    }
+
+    private void setModel(Model model) {
+        model.addAttribute("anecdotes", anecdoteService.getAllAnecdotes());
+        model.addAttribute("path", "categories");
     }
 }
