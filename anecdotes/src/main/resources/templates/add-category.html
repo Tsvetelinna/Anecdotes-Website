@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head::head('Categories')"></head>
+<body>
+<div th:replace="fragments/menu-admin::menu(${path})"></div>
+<div class="container">
+    <div class="jumbotron text-center">
+        <h2>Categories</h2>
+    </div>
+
+    <div class="container">
+        <div class="row justify-content-center " th:each="c : ${categories}">
+            <div class="col-md-2 img-thumbnail" style="margin: 5px">
+                <p th:text="${c.name}"></p>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:replace="fragments/foot::foot"></div>
+</body>
+</html>
