@@ -1,17 +1,17 @@
 package course.spring.web;
 
 import course.spring.entity.Category;
+import course.spring.entity.Role;
 import course.spring.entity.User;
 import course.spring.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.websocket.server.PathParam;
+
+import static course.spring.entity.Role.USER;
 
 
 @Controller
@@ -28,7 +28,7 @@ public class UserController {
 
     @GetMapping("/users")
     public String getCategoriesUser(Model model) {
-        model.addAttribute("users", userService.getAllUsers());
+        model.addAttribute("users", userService.getAllUsers(USER));
         model.addAttribute("path", "users");
         return "users";
     }
@@ -42,14 +42,14 @@ public class UserController {
     @PostMapping("/users/update/{id}")
     public String update(@PathParam("id") Long id, User user) {
         user.setId(id);
+        user.setRole(USER);
         userService.updateUser(user);
         return "redirect:/users";
     }
 
-    @PostMapping("/users/delete")
+    @GetMapping("/users/delete")
     public String delete(@RequestParam("id") Long id) {
         userService.deleteUser(id);
         return "redirect:/users";
     }
-
 }

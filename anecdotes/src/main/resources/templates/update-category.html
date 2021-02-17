@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head::head('Categories')">
+<style type="text/css">
+
+.anecdote_container {
+    margin: 5px;
+}
+
+.anecdote_container:hover {
+    background-color: #fff9b8;
+    border-color: gold;
+}
+
+</style>
+</head>
+<body>
+<div th:replace="fragments/menu-admin::menu(${path})"></div>
+<div class="container">
+
+    <form class="form-signin" method="post" action="#"  th:action="@{/categories/update/{id}(id=${category.id})}"
+          th:object="${category}" xmlns:th="http://www.w3.org/1999/xhtml">
+        <input type="hidden" th:field="*{id}"/>
+        <h2 class="form-signin-heading">Update</h2>
+        <p>
+            <label for="name" class="sr-only">Name</label>
+            <input type="text" id="name" name="name" th:field="*{name}" class="form-control" placeholder="Name" required="" autofocus="">
+        </p>
+        <button class="btn btn-primary" type="submit">Add</button>
+    </form>
+
+    <form class="form-signin" xmlns:th="http://www.w3.org/1999/xhtml">
+        <input type="hidden" th:field="*{id}" th:object="${category}"/>
+        <a class="btn btn-danger" th:href="@{categories/delete(id=${category.id})}" >Delete</a>
+    </form>
+</div>
+<div th:replace="fragments/foot::foot"></div>
+</body>
+</html>

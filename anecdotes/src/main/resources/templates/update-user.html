@@ -17,11 +17,13 @@
             <input type="text" id="username" name="username" th:field="*{username}" class="form-control" placeholder="Username" required="" autofocus="">
         </p>
         <button class="btn btn-primary" type="submit">Add</button>
-
-        <a class="nav-link" th:href="@{users/delete(id=${user.id})}">Home</a>
-
-        <button class="btn btn-danger" th:href="@{users/delete(id=${user.id})}" type="submit">Delete</button>
     </form>
+
+    <form class="form-signin" xmlns:th="http://www.w3.org/1999/xhtml">
+        <input type="hidden" th:field="*{id}" th:object="${user}"/>
+        <a class="btn btn-danger" th:href="@{users/delete(id=${user.id})}" >Delete</a>
+    </form>
+
 </div>
 <div th:replace="fragments/foot::foot"></div>
 </body>

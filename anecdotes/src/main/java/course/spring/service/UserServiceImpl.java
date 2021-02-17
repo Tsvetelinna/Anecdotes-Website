@@ -1,6 +1,7 @@
 package course.spring.service;
 
 import course.spring.dao.UserRepository;
+import course.spring.entity.Role;
 import course.spring.entity.User;
 import course.spring.exception.InvalidEntityDataException;
 import course.spring.exception.NonExisitingEntityException;
@@ -26,6 +27,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> getAllUsers() {
         return userRepository.findAll();
+    }
+
+    @Override
+    public List<User> getAllUsers(Role role) {
+        return userRepository.findAllByRole(role.toString());
     }
 
     @Override

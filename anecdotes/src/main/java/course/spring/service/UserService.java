@@ -1,11 +1,14 @@
 package course.spring.service;
 
+import course.spring.entity.Role;
 import course.spring.entity.User;
 
 import java.util.List;
 
 public interface UserService {
     List<User> getAllUsers();
+
+    List<User> getAllUsers(Role role);
 
     User getUserById(Long id);
 

@@ -4,6 +4,7 @@ import course.spring.dao.CategoryRepository;
 import course.spring.entity.Category;
 import course.spring.exception.NonExisitingEntityException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
@@ -20,7 +21,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public List<Category> getAllCategories() {
-        return categoryRepository.findAll();
+        return categoryRepository.findAll(Sort.by(Sort.Direction.ASC, "name"));
     }
 
     @Override

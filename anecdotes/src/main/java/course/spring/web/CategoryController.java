@@ -9,6 +9,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import javax.websocket.server.PathParam;
+
+import static course.spring.entity.Role.USER;
 
 @Controller
 @RequestMapping
@@ -33,6 +38,12 @@ public class CategoryController {
         return "categories-admin";
     }
 
+    @GetMapping("/update-categories")
+    public String updateCategories(Model model) {
+        setModel(model);
+        return "update-categories";
+    }
+
     @GetMapping("/categories-user")
     public String getCategoriesUser(Model model) {
         setModel(model);
@@ -47,6 +58,25 @@ public class CategoryController {
     @PostMapping("/categories/add")
     public String signUp(Category category) {
         categoryService.addCategory(category);
+        return "redirect:/categories-admin";
+    }
+
+    @GetMapping("/update-category")
+    public String updateUser(@RequestParam("id") Long id, Model model) {
+        model.addAttribute("category", categoryService.getCategoryById(id));
+        return "update-category";
+    }
+
+    @PostMapping("/categories/update/{id}")
+    public String update(@PathParam("id") Long id, Category category) {
+        category.setId(id);
+        categoryService.updateCategory(category);
+        return "redirect:/categories-admin";
+    }
+
+    @GetMapping("/categories/delete")
+    public String delete(@RequestParam("id") Long id) {
+        categoryService.deleteCategory(id);
         return "redirect:/categories-admin";
     }
 

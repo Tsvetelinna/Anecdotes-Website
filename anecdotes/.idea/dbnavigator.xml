@@ -25,7 +25,7 @@
     <show-object-properties value="true" />
     <loaded-nodes>
       <connection connection-id="9dea268b-ce7e-4a18-b2f1-20d30b8b6438">
-        <schema name="anecdotes" object-types="index, view, function, procedure, table, constraint, dataset trigger, column" />
+        <schema name="anecdotes" object-types="table, constraint, procedure, column, index, function, view, dataset trigger" />
       </connection>
     </loaded-nodes>
   </component>
@@ -44,6 +44,7 @@
     <filter-actions connection-id="9dea268b-ce7e-4a18-b2f1-20d30b8b6438" dataset="anecdotes.anecdotes" active-filter-id="EMPTY_FILTER" />
     <filter-actions connection-id="9dea268b-ce7e-4a18-b2f1-20d30b8b6438" dataset="anecdotes.users" active-filter-id="EMPTY_FILTER" />
     <filter-actions connection-id="9dea268b-ce7e-4a18-b2f1-20d30b8b6438" dataset="anecdotes.categories" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="9dea268b-ce7e-4a18-b2f1-20d30b8b6438" dataset="anecdotes.comments" active-filter-id="EMPTY_FILTER" />
   </component>
   <component name="DBNavigator.Project.EditorStateManager">
     <last-used-providers />
