@@ -8,6 +8,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
+import static course.spring.entity.Role.ADMIN;
+import static course.spring.entity.Role.USER;
 import static org.springframework.http.HttpMethod.POST;
 
 @Configuration
@@ -18,6 +20,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable()
                 .authorizeRequests()
                 .antMatchers(POST, "/login", "/register").permitAll()
+                .antMatchers("/home-admin", "/categories-admin", "add-category", "update-categories", "/anecdotes-admin", "/users", "/profile-admin").hasAnyRole(ADMIN.toString())
+                .antMatchers("/home", "/categories-user", "categories-user", "add-anecdote", "/anecdotes-user", "/my-anecdotes", "/profile-user").hasAnyRole(USER.toString())
                 .antMatchers("/").permitAll()
                 .and().formLogin()
                 .successHandler(myAuthenticationSuccessHandler());

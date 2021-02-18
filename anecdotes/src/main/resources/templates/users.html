@@ -26,11 +26,11 @@
         <div class="row justify-content-center ">
             <a th:href="@{update-user(id=${u.id})}" class="col-md-3 img-thumbnail anecdote_container"
                th:each="u : ${users}">
-                <p> Name: [[${u.name}]]</p>
-                <p> Username: [[${u.username}]]</p>
-                <p> Role: [[${u.role}]]</p>
-                <p> Created: [[${u.createdAt}]]</p>
-                <p> Updated: [[${u.updatedAt}]]</p>
+                <p> NAME: [[${u.name}]]</p>
+                <p> USERNAME: [[${u.username}]]</p>
+                <p> ROLE: [[${u.role}]]</p>
+                <p> CREATED: [[${u.createdAt}]]</p>
+                <p> UPDATED: [[${u.updatedAt}]]</p>
                 <p> PROFILE PICTURE:</p>
                 <img class="img-thumbnail" th:if="${u.profilePicture != null}"
                      th:src="${'/users-uploads/' + u.profilePicture}" src="">
