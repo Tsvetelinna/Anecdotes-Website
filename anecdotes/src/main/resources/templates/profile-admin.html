@@ -12,7 +12,8 @@
     border-color: gold;
 }
 
-</style>
+
+    </style>
 </head>
 <body>
 <div th:replace="fragments/menu-admin::menu(${path})"></div>
@@ -22,8 +23,8 @@
     </div>
 
     <div class="container">
-        <div class="row justify-content-center " >
-            <a th:href="@{update-admin-profile(id=${user.id})}" class="col-md-3 img-thumbnail anecdote_container" >
+        <div class="row justify-content-center ">
+            <a th:href="@{update-admin-profile(id=${user.id})}" class="col-md-3 img-thumbnail anecdote_container">
                 <p> NAME: [[${user.name}]]</p>
                 <p> USERNAME: [[${user.username}]]</p>
                 <p> ROLE: [[${user.role}]]</p>

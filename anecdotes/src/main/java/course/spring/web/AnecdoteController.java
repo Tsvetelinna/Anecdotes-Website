@@ -155,7 +155,7 @@ public class AnecdoteController {
     private void handleMultipartFile(MultipartFile file) {
         try {
             File currentDir = new File(UPLOADS_DIR);
-            if(!currentDir.exists()) {
+            if (!currentDir.exists()) {
                 currentDir.mkdirs();
             }
             String path = currentDir.getAbsolutePath() + "/" + file.getOriginalFilename();

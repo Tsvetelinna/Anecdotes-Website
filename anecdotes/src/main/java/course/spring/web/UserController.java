@@ -1,18 +1,18 @@
 package course.spring.web;
 
-import course.spring.entity.Category;
-import course.spring.entity.Role;
 import course.spring.entity.User;
 import course.spring.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.websocket.server.PathParam;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -117,7 +117,7 @@ public class UserController {
     private void handleMultipartFile(MultipartFile file) {
         try {
             File currentDir = new File(UPLOADS_DIR);
-            if(!currentDir.exists()) {
+            if (!currentDir.exists()) {
                 currentDir.mkdirs();
             }
             String path = currentDir.getAbsolutePath() + "/" + file.getOriginalFilename();

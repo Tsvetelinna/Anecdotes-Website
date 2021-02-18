@@ -9,8 +9,8 @@
     </div>
 
     <div class="container">
-        <div class="row justify-content-center " >
-            <a th:href="@{update-user-profile(id=${user.id})}" class="col-md-3 img-thumbnail anecdote_container" >
+        <div class="row justify-content-center ">
+            <a th:href="@{update-user-profile(id=${user.id})}" class="col-md-3 img-thumbnail anecdote_container">
                 <p> NAME: [[${user.name}]]</p>
                 <p> USERNAME: [[${user.username}]]</p>
                 <p> ROLE: [[${user.role}]]</p>
@@ -18,7 +18,7 @@
                 <p> UPDATED: [[${user.updatedAt}]]</p>
                 <p> PROFILE PICTURE:</p>
                 <img class="img-thumbnail" th:if="${user.profilePicture != null}"
-                         th:src="${'/users-uploads/' + user.profilePicture}" src="">
+                     th:src="${'/users-uploads/' + user.profilePicture}" src="">
             </a>
         </div>
     </div>

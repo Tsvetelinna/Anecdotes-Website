@@ -9,8 +9,9 @@
     </div>
 
     <div class="container">
-        <div class="row justify-content-center " >
-            <a th:href="@{users/anecdotes/by-category(id=${c.id})}" class="col-md-3 img-thumbnail anecdote_container" th:each="c : ${categories}">
+        <div class="row justify-content-center ">
+            <a th:href="@{users/anecdotes/by-category(id=${c.id})}" class="col-md-3 img-thumbnail anecdote_container"
+               th:each="c : ${categories}">
                 <p th:text="${c.name}"></p>
             </a>
         </div>

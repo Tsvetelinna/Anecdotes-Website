@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/head::head('Categories')">
-<style type="text/css">
+    <style type="text/css">
 
 .anecdote_container {
     margin: 5px;
@@ -12,7 +12,8 @@
     border-color: gold;
 }
 
-</style>
+
+    </style>
 </head>
 <body>
 <div th:replace="fragments/menu-admin::menu(${path})"></div>
@@ -22,8 +23,9 @@
     </div>
 
     <div class="container">
-        <div class="row justify-content-center " >
-            <a th:href="@{/by-category(id=${c.id})}" class="col-md-3 img-thumbnail anecdote_container" th:each="c : ${categories}">
+        <div class="row justify-content-center ">
+            <a th:href="@{/by-category(id=${c.id})}" class="col-md-3 img-thumbnail anecdote_container"
+               th:each="c : ${categories}">
                 <p th:text="${c.name}"></p>
             </a>
         </div>

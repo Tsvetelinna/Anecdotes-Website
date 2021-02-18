@@ -1,7 +1,6 @@
 package course.spring.web;
 
 import course.spring.entity.Category;
-import course.spring.entity.User;
 import course.spring.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,8 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.websocket.server.PathParam;
-
-import static course.spring.entity.Role.USER;
 
 @Controller
 @RequestMapping

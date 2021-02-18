@@ -14,9 +14,9 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     @Query(value =
             " select * " +
-            " from users u " +
-            " where u.role = :role " +
-            " order by u.created_at ASC", nativeQuery = true
+                    " from users u " +
+                    " where u.role = :role " +
+                    " order by u.created_at ASC", nativeQuery = true
     )
     List<User> findAllByRole(@Param("role") String role);
 

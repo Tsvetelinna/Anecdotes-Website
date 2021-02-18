@@ -4,7 +4,6 @@ import course.spring.entity.User;
 import course.spring.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,7 +15,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-import static course.spring.entity.Role.*;
+import static course.spring.entity.Role.USER;
 
 @Controller
 @RequestMapping("")
@@ -60,7 +59,7 @@ public class AuthenticationController {
     private void handleMultipartFile(MultipartFile file) {
         try {
             File currentDir = new File(UPLOADS_DIR);
-            if(!currentDir.exists()) {
+            if (!currentDir.exists()) {
                 currentDir.mkdirs();
             }
             String path = currentDir.getAbsolutePath() + "/" + file.getOriginalFilename();

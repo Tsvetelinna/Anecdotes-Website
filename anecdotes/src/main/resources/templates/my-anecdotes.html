@@ -8,8 +8,9 @@
         <h2>Anecdotes</h2>
     </div>
     <div class="container">
-        <div class="row justify-content-center " >
-            <a th:href="@{update-user-anecdote(id=${a.id})}" class="col-md-3 img-thumbnail anecdote_container" th:each="a : ${anecdotes}">
+        <div class="row justify-content-center ">
+            <a th:href="@{update-user-anecdote(id=${a.id})}" class="col-md-3 img-thumbnail anecdote_container"
+               th:each="a : ${anecdotes}">
                 <p th:text="${a.text}"></p>
                 <img class="img-thumbnail" th:if="${a.picture != null}"
                      th:src="${'/anecdotes-uploads/' + a.picture}" src="">
