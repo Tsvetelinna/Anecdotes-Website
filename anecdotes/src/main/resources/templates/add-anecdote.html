@@ -4,7 +4,7 @@
 <body>
 <div th:replace="fragments/menu-user::menu(${path})"></div>
 <div class="container">
-    <form class="form-signin" method="post" action="#" th:action="@{/anecdotes/add}" th:object="${anecdote}">
+    <form class="form-signin" method="post" action="#" th:action="@{/anecdotes/add}" th:object="${anecdote}" enctype="multipart/form-data">
         <h2 class="form-signin-heading">Add Anecdote</h2>
         <textarea placeholder="Type anecdote here..." name="text" id="text" th:field="*{description}" class="form-control" rows="5"></textarea>
         <div style="margin-bottom: 15px">
@@ -14,6 +14,10 @@
                         th:value="${c.id}"
                         th:text="${c.name}"></option>
             </select>
+        </div>
+        <div class="input_with_title_and_body">
+            <label for="image">Image:</label>
+            <input type="file" name="image" th:value="*{picture}" id="image" accept="image/png, image/jpeg">
         </div>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Add</button>
     </form>

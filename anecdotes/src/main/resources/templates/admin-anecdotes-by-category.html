@@ -11,8 +11,8 @@
         <div class="row justify-content-center " >
             <a th:href="@{update-anecdote(id=${a.id})}" class="col-md-3 img-thumbnail anecdote_container" th:each="a : ${anecdotes}">
                 <p th:text="${a.text}"></p>
-                <img src="https://www.thetraveler.bg/wp-content/uploads/2020/06/Sunset-Thessaloniki-7.jpg" class="img-thumbnail" alt="Sunset">
-            </a>
+                <img class="img-thumbnail" th:if="${a.picture != null}"
+                     th:src="${'/anecdotes-uploads/' + a.picture}" src="">            </a>
         </div>
 
     </div>

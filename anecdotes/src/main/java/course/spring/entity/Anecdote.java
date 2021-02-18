@@ -15,8 +15,7 @@ import javax.persistence.*;
 public class Anecdote extends BaseEntity {
 
     private String text;
-    @Lob
-    private byte[] picture;
+    private String picture;
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     private User author;
