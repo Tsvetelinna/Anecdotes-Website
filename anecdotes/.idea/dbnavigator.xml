@@ -25,7 +25,7 @@
     <show-object-properties value="true" />
     <loaded-nodes>
       <connection connection-id="9dea268b-ce7e-4a18-b2f1-20d30b8b6438">
-        <schema name="anecdotes" object-types="function, index, table, column, dataset trigger, procedure, constraint, view" />
+        <schema name="anecdotes" object-types="view, table, function, index, dataset trigger, constraint, column, procedure" />
       </connection>
     </loaded-nodes>
   </component>
@@ -35,10 +35,7 @@
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files>
-      <object connection-id="9dea268b-ce7e-4a18-b2f1-20d30b8b6438" object-ref="schemas/anecdotes/tables/users" />
-      <object connection-id="9dea268b-ce7e-4a18-b2f1-20d30b8b6438" object-ref="schemas/anecdotes/tables/comments" />
-    </open-files>
+    <open-files />
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="9dea268b-ce7e-4a18-b2f1-20d30b8b6438" />

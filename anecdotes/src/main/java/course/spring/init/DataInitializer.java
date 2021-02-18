@@ -18,7 +18,7 @@ import java.util.List;
 @Component
 public class DataInitializer implements CommandLineRunner {
 
-    public static final List<User> users = List.of(new User("Default", "admin@mail.com", "admin123", Role.ADMIN, null));
+    public static final List<User> users = List.of(new User("Default", "admin@mail.com", "1234", Role.ADMIN, null));
     public static final List<Category> categories = List.of(new Category("Политически"));
     public static final List<Anecdote> anecdotes = List.of(
             new Anecdote("Предизборен митинг. – Гарантираме, че само след пет години всички ние ще живеем по-добре, " +

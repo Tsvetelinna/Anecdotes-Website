@@ -34,7 +34,12 @@ public class Anecdote extends BaseEntity {
 
     public Anecdote(String text, String picture, @NotNull User author, @NotNull Category category) {
         this.text = text;
-        this.picture = picture;
+
+        if (picture == null || picture.isEmpty() || picture.isBlank()) {
+            this.picture = null;
+        } else {
+            this.picture = picture;
+        }
         this.author = author;
         this.category = category;
     }
