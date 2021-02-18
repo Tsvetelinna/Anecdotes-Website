@@ -14,10 +14,11 @@
                 <p> NAME: [[${user.name}]]</p>
                 <p> USERNAME: [[${user.username}]]</p>
                 <p> ROLE: [[${user.role}]]</p>
-                <p> PROFILE Picture: [[${user.profilePicture}]]</p>
                 <p> CREATED: [[${user.createdAt}]]</p>
                 <p> UPDATED: [[${user.updatedAt}]]</p>
-                <img src="https://www.thetraveler.bg/wp-content/uploads/2020/06/Sunset-Thessaloniki-7.jpg" class="img-thumbnail" alt="Sunset">
+                <p> PROFILE PICTURE:</p>
+                <img class="img-thumbnail" th:if="${user.profilePicture != null}"
+                         th:src="${'/users-uploads/' + user.profilePicture}" src="">
             </a>
         </div>
     </div>

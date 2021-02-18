@@ -7,9 +7,15 @@ import course.spring.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.websocket.server.PathParam;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 import static course.spring.entity.Role.ADMIN;
 import static course.spring.entity.Role.USER;
@@ -19,6 +25,7 @@ import static course.spring.entity.Role.USER;
 @RequestMapping
 public class UserController {
 
+    private static final String UPLOADS_DIR = "users-images";
     private UserService userService;
 
     @Autowired
@@ -41,7 +48,11 @@ public class UserController {
     }
 
     @PostMapping("/users/update/{id}")
-    public String update(@PathParam("id") Long id, User user) {
+    public String update(@PathParam("id") Long id, User user, @RequestParam("image") MultipartFile file) {
+        if (file != null) {
+            handleMultipartFile(file);
+            user.setProfilePicture(file.getOriginalFilename());
+        }
         user.setId(id);
         user.setRole(USER);
         userService.updateUser(user);
@@ -67,7 +78,11 @@ public class UserController {
     }
 
     @PostMapping("/profile/update/{id}")
-    public String editUserProfile(@PathParam("id") Long id, User user) {
+    public String editUserProfile(@PathParam("id") Long id, User user, @RequestParam("image") MultipartFile file) {
+        if (file != null) {
+            handleMultipartFile(file);
+            user.setProfilePicture(file.getOriginalFilename());
+        }
         user.setId(id);
         user.setRole(USER);
         userService.updateUser(user);
@@ -87,11 +102,30 @@ public class UserController {
     }
 
     @PostMapping("/profile-admin/update/{id}")
-    public String editAdminProfile(@PathParam("id") Long id, User user) {
+    public String editAdminProfile(@PathParam("id") Long id, User user, @RequestParam("image") MultipartFile file) {
+        if (file != null) {
+            handleMultipartFile(file);
+            user.setProfilePicture(file.getOriginalFilename());
+        }
+
         user.setId(id);
         user.setRole(ADMIN);
         userService.updateUser(user);
         return "redirect:/profile-admin";
     }
 
+    private void handleMultipartFile(MultipartFile file) {
+        try {
+            File currentDir = new File(UPLOADS_DIR);
+            if(!currentDir.exists()) {
+                currentDir.mkdirs();
+            }
+            String path = currentDir.getAbsolutePath() + "/" + file.getOriginalFilename();
+            path = new File(path).getAbsolutePath();
+            File f = new File(path);
+            FileCopyUtils.copy(file.getInputStream(), new FileOutputStream(f));
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
 }

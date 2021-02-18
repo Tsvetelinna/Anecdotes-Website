@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/head::head('Projects List')"></head>
+<head th:replace="fragments/head::head('Hello')"></head>
 <body>
 <div th:replace="fragments/menu-user::menu(${path})"></div>
 <div class="container">
-    <h3>Cveti e qka</h3>
-    <p>Test</p>
-    <p th:text="${name}"></p>
+    <h3>Hello User</h3>
 </div>
 <div th:replace="fragments/foot::foot"></div>
 </body>

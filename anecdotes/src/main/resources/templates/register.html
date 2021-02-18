@@ -9,7 +9,7 @@
     <style></style><script async="" src="https://negbar.ad-blocker.org/chrome/adblocker-chromeglobalinjectjs.js"></script></head>
 <body>
 <div class="container">
-    <form class="form-signin" method="post" action="#" th:action="@{/sign-up}" th:object="${user}">
+    <form class="form-signin" method="post" action="#" th:action="@{/sign-up}" th:object="${user}" enctype="multipart/form-data">
         <h2 class="form-signin-heading">Please sign up</h2>
         <p>
             <label for="username" class="sr-only">Name</label>
@@ -23,6 +23,11 @@
             <label for="password" class="sr-only">Password</label>
             <input type="password" id="password" name="password" th:field="*{password}" class="form-control" placeholder="Password" required="">
         </p>
+        <div class="input_with_title_and_body">
+            <label for="image">Image:</label>
+            <input type="file" name="image" th:value="*{profilePicture}" id="image" accept="image/png, image/jpeg">
+        </div>
+
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
     </form>
 </div>

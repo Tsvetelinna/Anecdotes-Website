@@ -28,8 +28,7 @@ public class User extends BaseEntity implements UserDetails {
     private String password;
     @Enumerated(EnumType.STRING)
     private Role role;
-    @Lob
-    private byte[] profilePicture;
+    private String profilePicture;
     private boolean active = true;
 
     @Temporal(TemporalType.TIMESTAMP)
@@ -46,7 +45,7 @@ public class User extends BaseEntity implements UserDetails {
         return Collections.singleton(new SimpleGrantedAuthority("ROLE_" + role));
     }
 
-    public User(@NotNull String name, @NotNull String username, @NotNull String password, Role role, byte[] profilePicture) {
+    public User(@NotNull String name, @NotNull String username, @NotNull String password, Role role, String profilePicture) {
         this.name = name;
         this.username = username;
         this.password = password;
@@ -99,7 +98,7 @@ public class User extends BaseEntity implements UserDetails {
                 username.equals(user.username) &&
                 password.equals(user.password) &&
                 role == user.role &&
-                Arrays.equals(profilePicture, user.profilePicture) &&
+                Objects.equals(profilePicture, user.profilePicture) &&
                 Objects.equals(createdAt, user.createdAt) &&
                 Objects.equals(updatedAt, user.updatedAt) &&
                 Objects.equals(anecdotes, user.anecdotes);
@@ -107,8 +106,6 @@ public class User extends BaseEntity implements UserDetails {
 
     @Override
     public int hashCode() {
-        int result = Objects.hash(super.hashCode(), name, username, password, role, active, createdAt, updatedAt, anecdotes);
-        result = 31 * result + Arrays.hashCode(profilePicture);
-        return result;
+        return Objects.hash(super.hashCode(), name, username, password, role, profilePicture, active, createdAt, updatedAt, anecdotes);
     }
 }
