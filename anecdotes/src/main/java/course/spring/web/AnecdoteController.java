@@ -2,8 +2,11 @@ package course.spring.web;
 
 import course.spring.entity.Anecdote;
 import course.spring.entity.AnecdoteInfo;
+import course.spring.entity.Comment;
+import course.spring.entity.CommentInfo;
 import course.spring.service.AnecdoteService;
 import course.spring.service.CategoryService;
+import course.spring.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,11 +29,13 @@ public class AnecdoteController {
     private static final String UPLOADS_DIR = "anecdotes-images";
     private AnecdoteService anecdoteService;
     private CategoryService categoryService;
+    private CommentService commentService;
 
     @Autowired
-    public AnecdoteController(AnecdoteService anecdoteService, CategoryService categoryService) {
+    public AnecdoteController(AnecdoteService anecdoteService, CategoryService categoryService, CommentService commentService) {
         this.anecdoteService = anecdoteService;
         this.categoryService = categoryService;
+        this.commentService = commentService;
     }
 
     @GetMapping("/anecdotes")
@@ -146,6 +151,30 @@ public class AnecdoteController {
         anecdoteService.deleteAnecdote(id);
         return "redirect:/anecdotes-admin";
     }
+
+    @GetMapping("/anecdote-details")
+    public String getAnecdoteDetails(@RequestParam("id") Long id, Model model) {
+        model.addAttribute("anecdote", anecdoteService.getAnecdoteById(id));
+        model.addAttribute("comments", commentService.getAllCommentsByAnecdote(id));
+        return "anecdote-details";
+    }
+
+    @GetMapping("/anecdotes/add-comment")
+    public String addCommentToAnecdote(@RequestParam("id") Long id, Model model) {
+        CommentInfo commentInfo = new CommentInfo();
+        commentInfo.setAnecdoteId(id);
+        model.addAttribute("comment", commentInfo);
+        model.addAttribute("anecdoteId", id);
+        return "add-comment";
+    }
+
+    @PostMapping("/anecdotes/comments/add")
+    public String addComment(@PathParam("id") Long id, CommentInfo comment) {
+        comment.setAnecdoteId(id);
+        commentService.addComment(comment);
+        return "redirect:/anecdotes-user";
+    }
+
 
     private void setModel(Model model) {
         model.addAttribute("anecdotes", anecdoteService.getAllAnecdotes());

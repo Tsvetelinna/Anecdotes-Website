@@ -9,7 +9,7 @@
     </div>
     <div class="container">
         <div class="row justify-content-center ">
-            <a class="col-md-3 img-thumbnail anecdote_container" th:each="a : ${anecdotes}">
+            <a th:href="@{anecdote-details(id=${a.id})}" class="col-md-3 img-thumbnail anecdote_container" th:each="a : ${anecdotes}">
                 <p th:text="${a.text}"></p>
                 <img class="img-thumbnail" th:if="${a.picture != null}"
                      th:src="${'/anecdotes-uploads/' + a.picture}" src="">

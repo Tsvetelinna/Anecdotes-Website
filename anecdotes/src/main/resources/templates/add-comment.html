@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head::head('Add Comment')"></head>
+<body>
+<div th:replace="fragments/menu-admin::menu(${path})"></div>
+<div class="container">
+    <form class="form-signin" method="post" action="#" th:action="@{/anecdotes/comments/add(id=${anecdoteId})}" th:object="${comment}">
+        <input type="hidden" th:field="${anecdoteId}"/>
+        <h2 class="form-signin-heading">Add Comment</h2>
+        <p>
+            <label for="name" class="sr-only">Text</label>
+            <input type="text" id="name" name="name" th:field="*{description}" class="form-control" placeholder="Text"
+                   required="" autofocus="">
+        </p>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Add</button>
+    </form>
+</div>
+<div th:replace="fragments/foot::foot"></div>
+</body>
+</html>

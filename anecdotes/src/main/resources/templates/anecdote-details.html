@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:text-align="http://www.w3.org/1999/xhtml"
+      xmlns:margin-left="http://www.w3.org/1999/xhtml" xmlns:align-items="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments/head::head('Anecdotes')"></head>
+<body>
+<div th:replace="fragments/menu-user::menu(${path})"></div>
+<div class="container">
+    <div class="jumbotron text-center">
+        <h2>Anecdote Details</h2>
+    </div>
+    <div class="container">
+        <form class="form-signin" method="get" action="#" th:action="@{/anecdotes/add-comment(id=${anecdote.id})}"
+              th:object="${anecdote}" xmlns:th="http://www.w3.org/1999/xhtml">
+            <input type="hidden" th:field="*{id}"/>
+            <div class="container">
+                <div class="row justify-content-center ">
+                    <div class="col-md-10" style="text-align: center" th:text="${anecdote.text}"></div>
+                    <img class="img-thumbnail" th:if="${anecdote.picture != null}"
+                         th:src="${'/anecdotes-uploads/' + anecdote.picture}" src="">
+                    <br />
+                    <br />
+                    <p text-align:="center"><b>COMMENTS:</b></p>
+                    <br />
+                    <br />
+                    <div class="col-md-12 img-thumbnail anecdote_container" th:each="c : ${comments}">
+                        <p>Author: [[${c.author}]]</p>
+                        <p>Date: [[${c.createdAt}]]</p>
+                        <p th:text="${c.description}"></p>
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn btn-primary" type="submit">Add Comment</button>
+        </form>
+    </div>
+</div>
+<div th:replace="fragments/foot::foot"></div>
+</body>
+</html>
